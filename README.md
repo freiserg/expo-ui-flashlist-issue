@@ -4,7 +4,15 @@ Test repo for reproducing a bug with `@expo/ui` (SwiftUI) components inside `@sh
 
 ## Bug
 
-SwiftUI components (`Menu`, `Button`, `Toggle`, etc.) wrapped in `<Host>` lose background rendering or behave glitchy when placed inside a scrollable `FlashList` (as `ListHeaderComponent` or `renderItem`).
+SwiftUI `Menu` inside `FlashList` `ListHeaderComponent` — when a menu action toggles a conditional RN view (changes header height), the `Host`/`Menu` trigger loses its background.
+
+**Steps to reproduce:**
+1. Scroll the list up and down
+2. Tap the "•••" (More) button to open the native Menu
+3. Tap "Action 1" to toggle the conditional banner
+4. Observe the `actionIconCircle` background disappears or the layout glitches
+
+**Environment:** Expo SDK 55, `@expo/ui` 55.0.12, `@shopify/flash-list` 2.0.2.
 
 ## Setup
 
